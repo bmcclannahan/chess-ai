@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import logging
+from Piece import Pawn, Bishop, Knight, Rook, Queen, King
 
 class Game:
 
@@ -13,7 +14,7 @@ class Game:
 		self.pieces = {'1':'WP', '2':'WB', '3':'WH', '4':'WR', '5':'WQ', '6':'WK', '0': '-', '-1':'BP', '-2':'BB', '-3':'BH', '-4':'BR', '-5':'BQ', '-6':'BK'}
 		self.grid_shape = (8,8)
 		self.input_shape = (2,8,8)
-		self.name = 'connect4'
+		self.name = 'chess'
 		self.state_size = len(self.gameState.binary)
 		self.action_size = len(self.actionSpace)
 
@@ -123,8 +124,10 @@ class GameState():
 		return 0
 
 	def _isAKingInCheck(self):
-		whiteKing = nonzero(self.board == 6)[0][0]
-		blackKing = nonzero(self.board == -6)[0][0]
+		whiteKing = np.where(self.board == 6)[0][0]
+		blackKing = np.where(self.board == -6)[0][0]
+
+
 
 	def _getValue(self):
 		# This is the value of the state for the current player
